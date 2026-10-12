@@ -156,12 +156,7 @@ vendored-openssl = ["git2/vendored-openssl"]
 
 [dependencies]
 cargo_metadata = "0.23"
-# Use this with default-features set to "true" (implicitly) so that reqwest,
-# a transitive dependency, is compiled with support for both webpki
-# certificates AND native certificates. We want support for both to be
-# present, and then to let the user _select_ through configuration which
-# one they want to be used.
-tame-index = { version = "0.25", features = ["sparse", "native-certs"] }
+tame-index = { version = "0.26", path = "../tame-index" }
 git2 = { version = "0.20.4", default-features = false }
 toml_edit = { version = "0.25.9", features = ["serde"] }
 toml = "1.1.1"
@@ -188,6 +183,11 @@ similar = "2.7"
 anstream = "1.0.0"
 annotate-snippets = "0.12.13"
 supports-unicode = "3.0.0"
+
+[dependencies.ureq]
+version = "3.4.2"
+default-features = false
+features = ["gzip", "platform-verifier", "rustls", "rustls-webpki-roots"]
 
 [dev-dependencies]
 assert_fs = "1.1"

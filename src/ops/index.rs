@@ -147,14 +147,14 @@ impl RemoteIndex {
             .etag_cache
             .make_remote_request(&self.index, krate_name, &self.lock)?;
 
-        let (parts, mut body) = self.client.run(req)?.into_parts();
+        let (parts, mut body) = self.client.run(req.into())?.into_parts();
         let body = body.read_to_vec()?;
 
         self.etag_cache
             .parse_remote_response(
                 &self.index,
                 krate_name,
-                ureq::http::Response::from_parts(parts, &body),
+                (&ureq::http::Response::from_parts(parts, body)).into(),
                 false,
                 &self.lock,
             )

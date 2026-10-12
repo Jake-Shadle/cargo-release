@@ -187,7 +187,7 @@ supports-unicode = "3.0.0"
 [dependencies.ureq]
 version = "3.4.2"
 default-features = false
-features = ["gzip", "platform-verifier", "rustls", "rustls-webpki-roots"]
+features = ["platform-verifier", "rustls", "rustls-webpki-roots"]
 
 [dev-dependencies]
 assert_fs = "1.1"
